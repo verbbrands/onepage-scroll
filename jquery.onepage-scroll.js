@@ -231,6 +231,9 @@
       		valForTest = $(window).width() < valFunction;
       	}
       }
+      if (typeOfRF == "object" && settings.responsiveFallback.length == 2) {
+	      valForTest = $(window).width() < settings.responsiveFallback[0] || $(window).height() < settings.responsiveFallback[1];
+      }
 
       //end modification
       if (valForTest) {
@@ -305,7 +308,11 @@
 
 
       if(settings.pagination == true) {
-        paginationList += "<li><a data-index='"+(i+1)+"' href='#" + (i+1) + "'></a></li>"
+	    if (title = $(this).attr('data-title')) {
+          paginationList += "<li><a data-index='"+(i+1)+"' href='#" + (i+1) + "'>" + title + "<span></span></a></li>";
+        } else {
+	      paginationList += "<li><a data-index='"+(i+1)+"' href='#" + (i+1) + "'><span></span></a></li>"
+        }
       }
     });
 
